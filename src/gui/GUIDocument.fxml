@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="700" spacing="25" styleClass="root" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+    <fx:define>
+        <!--<Font fx:id="FONT" size="18" />-->
+    </fx:define>
+    <stylesheets>
+        <URL value="@../../../../code/Equation_GUI/src/gui/style.css" />
+    </stylesheets>
+    <MenuBar id="menu-item" prefHeight="28.0" prefWidth="700">
+        <menus>
+            <Menu mnemonicParsing="false" text="文件">
+                <items>
+                    <MenuItem fx:id="menuImport" mnemonicParsing="false" onAction="#qusImport" text="导入" />
+                    <MenuItem fx:id="menuExport" mnemonicParsing="false" onAction="#qusExport" text="导出" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="题目设置">
+                <items>
+                    <Menu mnemonicParsing="false" text="根据类型生成">
+                        <items>
+                            <RadioMenuItem fx:id="menuGenAdd" mnemonicParsing="false" onAction="#genAddQus" text="加法题目">
+                                <toggleGroup>
+                                    <ToggleGroup fx:id="typeGen" />
+                                </toggleGroup>
+                            </RadioMenuItem>
+                            <RadioMenuItem fx:id="menuGenSub" mnemonicParsing="false" onAction="#genSubQus" text="减法题目" toggleGroup="$typeGen" />
+                            <RadioMenuItem fx:id="menuGenMix" mnemonicParsing="false" onAction="#genMixQus" text="加减混合" toggleGroup="$typeGen" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="根据数量生成">
+                        <items>
+                            <RadioMenuItem fx:id="menuAmt20" mnemonicParsing="false" onAction="#genQus20" text="20">
+                                <toggleGroup>
+                                    <ToggleGroup fx:id="amountGen" />
+                                </toggleGroup>
+                            </RadioMenuItem>
+                            <RadioMenuItem fx:id="menuAmt40" mnemonicParsing="false" onAction="#genQus40" text="40" toggleGroup="$amountGen" />
+                            <RadioMenuItem fx:id="menuAmt60" mnemonicParsing="false" onAction="#genQus60" text="60" toggleGroup="$amountGen" />
+                            <RadioMenuItem fx:id="menuAmt80" mnemonicParsing="false" onAction="#genQus80" text="80" toggleGroup="$amountGen" />
+                            <RadioMenuItem fx:id="menuAmt100" mnemonicParsing="false" onAction="#genQus100" text="100" toggleGroup="$amountGen" />
+                        </items>
+                    </Menu>
+                </items>
+            </Menu>
+            <Menu fx:id="qusOperationMenu" mnemonicParsing="false" text="题目操作">
+                <items>
+                    <MenuItem fx:id="menuReGen" mnemonicParsing="false" onAction="#reGenQus" text="重新生成" />
+                    <MenuItem fx:id="menuClear" mnemonicParsing="false" onAction="#clearAns" text="清空" />
+                    <MenuItem fx:id="menuSubmit" mnemonicParsing="false" onAction="#submitAns" text="提交" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="帮助">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#menuAbout" text="关于" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+    <HBox alignment="CENTER" spacing="30">
+        <HBox spacing="5">
+            <Button fx:id="btnImport" layoutX="19.0" layoutY="33.0" mnemonicParsing="false" onAction="#qusImport" text="导入" />
+            <Button fx:id="btnExport" layoutX="62.0" layoutY="33.0" mnemonicParsing="false" onAction="#qusExport" text="导出" />
+        </HBox>
+        <HBox fx:id="qusOperation" spacing="5">
+            <Button fx:id="btnReGen" layoutX="145.0" layoutY="33.0" mnemonicParsing="false" onAction="#reGenQus" text="重新生成" />
+            <Button fx:id="btnClear" layoutX="216.0" layoutY="33.0" mnemonicParsing="false" onAction="#clearAns" text="清空" />
+            <Button fx:id="btnSubmit" layoutX="263.0" layoutY="33.0" mnemonicParsing="false" onAction="#submitAns" text="提交" />
+        </HBox>
+        <HBox spacing="5">
+            <Button fx:id="btnLastPage" layoutX="346.0" layoutY="33.0" mnemonicParsing="false" onAction="#lastPage" text="上一页" />
+            <Button fx:id="btnNextPage" layoutX="403.0" layoutY="33.0" mnemonicParsing="false" onAction="#nextPage" text="下一页" />
+        </HBox>
+    </HBox>
+    <HBox id="equation" fx:id="qusZone" alignment="CENTER" prefHeight="115" prefWidth="430" spacing="30">
+
+        <VBox spacing="25">
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus1" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans1" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus5" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans5" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus9" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans9" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus13" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans13" prefHeight="10" prefWidth="60" />
+            </HBox>
+        </VBox>
+        <VBox spacing="25">
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus2" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans2" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus6" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans6" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus10" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans10" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus14" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans14" prefHeight="10" prefWidth="60" />
+            </HBox>
+        </VBox>
+        <VBox spacing="25">
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus3" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans3" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus7" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans7" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus11" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans11" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus15" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans15" prefHeight="10" prefWidth="60" />
+            </HBox>
+        </VBox>
+        <VBox spacing="25">
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus4" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans4" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus8" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans8" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus12" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans12" prefHeight="10" prefWidth="60" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label id="question" fx:id="qus16" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="85" textAlignment="JUSTIFY" />
+                <TextField fx:id="ans16" prefHeight="10" prefWidth="60" />
+            </HBox>
+        </VBox>
+
+    </HBox>
+    <Pagination fx:id="pageBar" pageCount="1" prefHeight="200.0" prefWidth="200.0" />
+    <HBox alignment="CENTER" spacing="15">
+        <Text text="第" textAlignment="CENTER" />
+        <Text fx:id="currentPage" textAlignment="CENTER" /> 
+        <Text text="页" textAlignment="CENTER" /> 
+        <Text text="共" textAlignment="CENTER" /> 
+        <Text fx:id="totalPage" textAlignment="CENTER" /> 
+        <Text text="页" textAlignment="CENTER" /> 
+    </HBox>
+    <Separator layoutX="1.0" layoutY="389.0" prefHeight="0.0" prefWidth="686.0" />
+    <HBox alignment="CENTER">
+        <VBox alignment="CENTER" spacing="10">
+            <HBox alignment="CENTER">
+                <Label fx:id="status" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="700" />
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="10" prefWidth="700" />
+            </HBox>
+        </VBox>
+    </HBox>
+    <HBox prefHeight="100.0" prefWidth="200.0" />
+
+</VBox>
